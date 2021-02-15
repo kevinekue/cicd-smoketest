@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  perform_smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: 
+          name: update packages
+          command: |
+            apk  add --update curl
+      - run:
+          name: smoke test
+          command: |
+            if curl -s --head "https://google.com"
+            then
+              return 0
+            else
+              return 1
+            fi
+
+workflows:
+  smoke_test_workflow:
+    jobs:
+      - perform_smoke_test
+  
