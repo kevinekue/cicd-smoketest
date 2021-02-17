@@ -12,7 +12,7 @@ jobs:
       - run:
           name: smoke test
           command: |
-            if curl -s --head "https://google.c"
+            if curl -s --head "https://google.com"
             then
               return 0
             else
